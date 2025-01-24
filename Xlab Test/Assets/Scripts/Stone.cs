@@ -15,7 +15,7 @@ namespace Golf
             {
                 if(!other.isAffect)
                 {
-                    onCollisionStone?.Invoke();
+                    GameEvents.CollisionStonesInvoke(collision);
                 }
 
             }

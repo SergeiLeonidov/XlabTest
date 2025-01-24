@@ -14,19 +14,31 @@ namespace Golf
         public float delayStep = 0.1f;
 
         private float m_lastSpawnedTime = 0;
+
+        public int score = 0;
+        public int highScore = 0;
         private void Start()
         {
             m_lastSpawnedTime = Time.time;
             RefreshDelay();
         }
 
+        private void OnStickHit()
+        {
+            score++;
+            highScore = Mathf.Max(highScore, score);
+            Debug.Log($"Score: {score} - High Score: {highScore}");
+        }
+
         private void OnEnable()
         {
-            Stone.onCollisionStone += GameOver;
+            GameEvents.onCollisionStone += GameOver;
+            GameEvents.onStickHit += OnStickHit;
         }
         private void OnDisable()
         {
-            Stone.onCollisionStone -= GameOver;
+            GameEvents.onCollisionStone -= GameOver;
+            GameEvents.onStickHit -= OnStickHit;
         }
         private void GameOver()
         {
