@@ -14,7 +14,7 @@ namespace Golf
             onCollisionStone?.Invoke();
         }
 
-        private static void StickHit()
+        public static void StickHit()
         {
             onStickHit?.Invoke();
         }
